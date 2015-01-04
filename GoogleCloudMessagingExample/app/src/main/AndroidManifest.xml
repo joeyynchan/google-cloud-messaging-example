@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="joeyynchan.googlecloudmessagingexample" >
+
+    <!-- Android application can register and receive messages. -->
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+
+    <!-- Android application can send the registration ID to the 3rd party server -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- Google Cloud Messaging requries a Google account -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+
+    <!-- Application can keep the processor from sleeping when a message is received.(Optional) -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <!-- Prevent other Android applications from registering and receiving the Android application's messages -->
+    <permission
+        android:name="joeyynchan.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="joeyynchan.permission.C2D_MESSAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/title_activity_main" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name=".GcmIntentService"
+            android:exported="false" >
+        </service>
+
+        <receiver
+            android:name=".GcmBroadcastReceiver"
+            android:enabled="true"
+            android:exported="true" >
+        </receiver>
+    </application>
+
+</manifest>
